@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Canceled(</title>
+</head>
+</html>
+{% extends 'base.html' %}
+{% block content %}
+    <section>
+      <div class="product">
+        <div class="description">
+          <h3>{{ item.name }}</h3>
+          {% if item.description %}
+            <h4> {{ item.description }}</h4>
+          {% endif %}
+          <h5>{{ item.price }} {{item.currency}}</h5>
+        </div>
+      </div>
+      <form action="{% url 'buy' item.pk %}" method="GET">
+        <button type="submit" id="checkout-button">buy</button>
+      </form>
+    </section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section>
+      <div class="product">
+        <div class="description">
+          <h3>{{ object.name|default_if_none:'' }} {{ object.pk }}</h3>
+          <h4> {{ object.description|default_if_none:'' }}</h4>
+          <h5>{{ object.price|default_if_none:'' }} {{object.currency|default_if_none:''}}</h5>
+        </div>
+      </div>
+      {% if '/item' in request.path %}
+      <form action="{% url 'buy' object.pk %}" method="GET">
+        <button type="submit" id="checkout-button">buy</button>
+      </form>
+      {% elif  '/order' in request.path%}
+      <form action="{% url 'order' object.pk %}" method="GET">
+        <button type="submit" id="checkout-button">buy</button>
+      </form>
+      {% endif %}
+{% endblock %}
